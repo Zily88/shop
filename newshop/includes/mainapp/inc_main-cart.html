@@ -1,0 +1,9 @@
+{% load staticfiles %}
+
+<div class="cart box_1">
+    <a href="{% url 'cart:main' %}">
+        <h3> <span class="simpleCart_total">${{ price }}</span> <span id="simpleCart_quantity" class="simpleCart_quantity">({{quantity }})</span><img src="{% static 'images/bag.png' %}" alt=""></h3>
+    </a>
+    <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p>
+    <div class="clearfix"> </div>
+</div>

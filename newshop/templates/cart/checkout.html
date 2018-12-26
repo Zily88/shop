@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+
+
+	<div class="inner-banner">
+		<div class="container">
+			<div class="banner-top inner-head">
+				{% include 'mainapp/inc_navbar.html' %}
+</div>
+	</div>
+		</div>
+		<!-- checkout -->
+<div class="cart-items">
+	<div class="container">
+	<div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="{% url 'home' %}" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                       Cart
+                    </li>
+                </ul>
+                <ul class="previous">
+                	<li><a href="#">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+			   </div>
+			 <h2>MY SHOPPING BAG ({{ cart_products|length }})</h2>
+		<div class="cart-gd">
+			{% for item in cart_products %}
+				<script>$(document).ready(function(c){
+					$('.close{{ forloop.counter }}').on('click', function(c){
+						var t_href = event.target;
+						$.ajax({
+							url: "remove/" + t_href.id,
+							success:
+						[function (data) {
+                    $('.simpleCart_total').text('$' + data.price);
+                    $('.simpleCart_quantity').text('(' + data.quantity + ')');
+                    $('h2').text('MY SHOPPING BAG (' + data.quantity + ')');
+//                    console.log('ajax done');
+                },
+                $(document).ready(function(c){
+						$('.cart-header{{ forloop.counter }}').fadeOut('slow', function(c){
+							$('.cart-header{{ forloop.counter }}').remove();
+						});
+						})]
+						});
+						<!--event.preventDefault();-->
+                    });
+                });
+			   </script>
+			{% if item.product %}
+			 <div class="cart-header{{ forloop.counter }} general_cartheader">
+				 <div class="close{{ forloop.counter }} general_close" id="{{ item.pk }}"> </div>
+				 <div class="cart-sec simpleCart_shelfItem">
+						<div class="cart-item cyc">
+							 <img src="{{ item.product.main_img.url }}" class="img-responsive" alt="">
+						</div>
+					   <div class="cart-item-info">
+						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+						<ul class="qty">
+							<li><p>Min. order value:</p></li>
+							<li><p>FREE delivery</p></li>
+						</ul>
+							 <div class="delivery">
+							 <p>Service Charges : $10.00</p>
+							 <span>Delivered in 1-1:30 hours</span>
+							 <div class="clearfix"></div>
+				        </div>
+					   </div>
+					   <div class="clearfix"></div>
+
+				  </div>
+			 </div>
+			{% else %}
+			<div class="cart-header{{ forloop.counter }} general_cartheader">
+				 <div class="close{{ forloop.counter }} general_close" id="{{ item.pk }}"> </div>
+				 <div class="cart-sec simpleCart_shelfItem">
+						<div class="cart-item cyc">
+							 <img src="{{ item.main_img.url }}" class="img-responsive" alt="">
+						</div>
+					   <div class="cart-item-info">
+						<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+						<ul class="qty">
+							<li><p>Min. order value:</p></li>
+							<li><p>FREE delivery</p></li>
+						</ul>
+							 <div class="delivery">
+							 <p>Service Charges : $10.00</p>
+							 <span>Delivered in 1-1:30 hours</span>
+							 <div class="clearfix"></div>
+				        </div>
+					   </div>
+					   <div class="clearfix"></div>
+
+				  </div>
+			 </div>
+			{% endif %}
+			{% endfor %}
+			 <!--<script>$(document).ready(function(c) {-->
+					<!--$('.close2').on('click', function(c){-->
+							<!--$('.cart-header2').fadeOut('slow', function(c){-->
+						<!--$('.cart-header2').remove();-->
+					<!--});-->
+					<!--});	  -->
+					<!--});-->
+			 <!--</script>-->
+			 <!--<div class="cart-header2">-->
+				 <!--<div class="close2"> </div>-->
+				  <!--<div class="cart-sec simpleCart_shelfItem">-->
+						<!--<div class="cart-item cyc">-->
+							 <!--<img src="images/l2.jpg" class="img-responsive" alt="">-->
+						<!--</div>-->
+					   <!--<div class="cart-item-info">-->
+						<!--<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>-->
+						<!--<ul class="qty">-->
+							<!--<li><p>Min. order value:</p></li>-->
+							<!--<li><p>FREE delivery</p></li>-->
+						<!--</ul>-->
+							 <!--<div class="delivery">-->
+							 <!--<p>Service Charges : $10.00</p>-->
+							 <!--<span>Delivered in 3-3:30 hours</span>-->
+							 <!--<div class="clearfix"></div>-->
+				        <!--</div>	-->
+					   <!--</div>-->
+					   <!--<div class="clearfix"></div>-->
+											<!---->
+				  <!--</div>-->
+			  <!--</div>-->
+			  <!--<script>$(document).ready(function(c) {-->
+					<!--$('.close3').on('click', function(c){-->
+							<!--$('.cart-header3').fadeOut('slow', function(c){-->
+						<!--$('.cart-header3').remove();-->
+					<!--});-->
+					<!--});	  -->
+					<!--});-->
+			 <!--</script>-->
+			  <!--<div class="cart-header3">-->
+				 <!--<div class="close3"> </div>-->
+				  <!--<div class="cart-sec simpleCart_shelfItem">-->
+						<!--<div class="cart-item cyc">-->
+							 <!--<img src="images/l3.jpg" class="img-responsive" alt="">-->
+						<!--</div>-->
+					   <!--<div class="cart-item-info">-->
+						<!--<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>-->
+						<!--<ul class="qty">-->
+							<!--<li><p>Min. order value:</p></li>-->
+							<!--<li><p>FREE delivery</p></li>-->
+						<!--</ul>-->
+							 <!--<div class="delivery">-->
+							 <!--<p>Service Charges : $10.00</p>-->
+							 <!--<span>Delivered On Tomorrow</span>-->
+							 <!--<div class="clearfix"></div>-->
+				        <!--</div>	-->
+					   <!--</div>-->
+					   <!--<div class="clearfix"></div>-->
+											<!---->
+				  <!--</div>-->
+			  <!--</div>-->
+		</div>
+	</div>
+</div>
+
+<!-- //checkout -->	
+		{% include 'mainapp/inc_news-letter.html' %}
+{% endblock %}
